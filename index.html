@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>AURA NAILS - Tarjeta Digital & Concierge</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Estilos personalizados -->
+  <link rel="stylesheet" href="styles.css">
+
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Google Fonts: Fraunces & Plus Jakarta Sans -->
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..800;1,9..144,400..700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- HTML5 QR Code Scanner Library -->
+  <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+  <!-- Ya no se usa el SDK de supabase-js: el navegador solo habla
+       con tus propias Edge Functions (ver más abajo). -->
+
+
+  <!-- Variables de entorno -->
+  <script src="env.js"></script>
+  <!-- Script principal extraído -->
+  <script src="app.js" defer></script>
+  <!-- ✅ NUEVO: Landing pública + puerta de acceso -->
+  <script src="landing.js" defer></script>
+</head>
+
+  <body class="min-h-screen flex flex-col justify-between antialiased selection:bg-[#f3ecf4] selection:text-[#6d4770] pb-safe">
+
+  <!-- Decoración flotante del app -->
+  <div class="aura-app-decor" id="aura-app-decor" aria-hidden="true">
+    <span class="aura-blob aura-blob-1"></span>
+    <span class="aura-blob aura-blob-2"></span>
+    <span class="aura-blob aura-blob-3"></span>
+    <span class="aura-blob aura-blob-4"></span>
+    <i data-lucide="sparkles" class="aura-float aura-float-1"></i>
+    <i data-lucide="flower-2" class="aura-float aura-float-2"></i>
+    <i data-lucide="heart"    class="aura-float aura-float-3"></i>
+    <i data-lucide="gem"      class="aura-float aura-float-4"></i>
+  </div>
+
+     <!-- ============================================================ -->
+  <!-- LANDING PÚBLICA (DEMO) · visible antes de iniciar sesión      -->
+  <!-- ============================================================ -->
+  <div id="landing-page" class="lp-root">
+
+    <!-- Decoración flotante de fondo -->
+    <div class="lp-decor" aria-hidden="true">
+      <span class="lp-blob lp-blob-1"></span>
+      <span class="lp-blob lp-blob-2"></span>
+      <span class="lp-blob lp-blob-3"></span>
+      <i data-lucide="sparkles" class="lp-float lp-float-1"></i>
+      <i data-lucide="flower-2" class="lp-float lp-float-2"></i>
+      <i data-lucide="heart" class="lp-float lp-float-3"></i>
+      <i data-lucide="gem" class="lp-float lp-float-4"></i>
+      <i data-lucide="star" class="lp-float lp-float-5"></i>
+      <i data-lucide="hand" class="lp-float lp-float-6"></i>
+    </div>
+
+    <!-- ===== NAV FLOTANTE ===== -->
+    <nav class="lp-nav" id="lp-nav">
+      <div class="lp-nav-inner">
+        <a href="#lp-hero" class="lp-brand">
+          <span class="lp-brand-mark">☪</span>
+          <span class="lp-brand-text">AURA <b>NAILS</b></span>
+        </a>
+
+        <div class="lp-nav-links">
+          <a href="#lp-experiencia">Experiencia</a>
+          <a href="#lp-beneficios">Beneficios</a>
+          <a href="#lp-galeria">Galería</a>
+          <a href="#lp-pasos">Cómo funciona</a>
+        </div>
+
+        <div class="lp-nav-actions">
+          <button class="lp-btn lp-btn-ghost lp-hide-sm" onclick="enterApp('client')">Mi tarjeta</button>
+          <button class="lp-btn lp-btn-primary" onclick="openLoginModal()">
+            <i data-lucide="log-in"></i> Iniciar sesión
+          </button>
+          <button class="lp-burger" onclick="toggleLpMenu()" aria-label="Abrir menú">
+            <i data-lucide="menu"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Menú móvil desplegable -->
+      <div class="lp-mobile-menu" id="lp-mobile-menu">
+        <a href="#lp-experiencia" onclick="closeLpMenu()">Experiencia</a>
+        <a href="#lp-beneficios" onclick="closeLpMenu()">Beneficios</a>
+        <a href="#lp-galeria" onclick="closeLpMenu()">Galería</a>
+        <a href="#lp-pasos" onclick="closeLpMenu()">Cómo funciona</a>
+        <button class="lp-btn lp-btn-primary lp-mobile-cta" onclick="closeLpMenu(); enterApp('client')">
+          Ver mi tarjeta digital
+        </button>
+      </div>
+    </nav>
+
+    <main class="lp-main">
+
+      <!-- ===== HERO ===== -->
+      <section id="lp-hero" class="lp-hero">
+        <div class="lp-hero-copy lp-reveal">
+          <span class="lp-eyebrow">
+            <i data-lucide="sparkles"></i> Estudio de uñas & concierge digital
+          </span>
+
+          <h1 class="lp-title">
+            El arte de llevar <em>tus manos</em> a otro nivel.
+          </h1>
+
+          <p class="lp-lead">
+            AURA NAILS combina diseño de autor, cuidado premium y una tarjeta de lealtad
+            digital que vive en tu teléfono. Sin apps, sin papeleo y sin perder ni un solo sello.
+          </p>
+
+          <div class="lp-cta-row">
+            <button class="lp-btn lp-btn-primary lp-btn-lg" onclick="enterApp('client')">
+              Ver mi tarjeta digital <i data-lucide="arrow-right"></i>
+            </button>
+            <button class="lp-btn lp-btn-outline lp-btn-lg" onclick="enterApp('staff')">
+              Acceso del personal
+            </button>
+          </div>
+
+          <div class="lp-trust">
+            <div class="lp-avatars">
+              <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=80&q=70" alt="" onerror="this.style.display='none'">
+              <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=80&q=70" alt="" onerror="this.style.display='none'">
+              <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=80&q=70" alt="" onerror="this.style.display='none'">
+            </div>
+            <span>Más de <b>1,200 clientas</b> ya coleccionan sellos en AURA.</span>
+          </div>
+        </div>
+
+        <div class="lp-hero-visual lp-reveal">
+          <div class="lp-hero-frame">
+            <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=1000&q=80"
+                 alt="Manicure de autor en AURA NAILS" onerror="this.style.display='none'">
+          </div>
+
+          <div class="lp-floating-card lp-fc-1">
+            <span class="lp-fc-ico"><i data-lucide="badge-check"></i></span>
+            <div>
+              <b>Tarjeta digital</b>
+              <small>6 sellos = premio mayor</small>
+            </div>
+          </div>
+
+          <div class="lp-floating-card lp-fc-2">
+            <span class="lp-fc-ico lp-fc-ico-alt"><i data-lucide="clock"></i></span>
+            <div>
+              <b>Recordatorios</b>
+              <small>Por WhatsApp, sin olvidos</small>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== BANDA DE DATOS ===== -->
+      <section class="lp-stats lp-reveal">
+        <div><b>+1,200</b><span>Clientas en el club</span></div>
+        <div><b>6</b><span>Sellos por premio</span></div>
+        <div><b>4.9★</b><span>Valoración promedio</span></div>
+        <div><b>100%</b><span>Tarjeta digital</span></div>
+      </section>
+
+      <!-- ===== EXPERIENCIA ===== -->
+      <section id="lp-experiencia" class="lp-section">
+        <div class="lp-section-head lp-reveal">
+          <span class="lp-eyebrow"><i data-lucide="gem"></i> La experiencia AURA</span>
+          <h2 class="lp-h2">Cada visita, una obra <em>hecha a tu medida</em></h2>
+          <p class="lp-sub">
+            Un estudio pensado para que el resultado dure, se vea impecable y se sienta tan bien
+            como se ve. Del diseño a la atención, todo está cuidado al detalle.
+          </p>
+        </div>
+
+        <div class="lp-grid-3">
+          <article class="lp-card lp-reveal">
+            <span class="lp-card-ico"><i data-lucide="brush"></i></span>
+            <h3>Diseño de autor</h3>
+            <p>Estilos exclusivos, estructuras resistentes y acabados que se mantienen semanas intactos.</p>
+          </article>
+
+          <article class="lp-card lp-reveal">
+            <span class="lp-card-ico"><i data-lucide="heart-handshake"></i></span>
+            <h3>Cuidado premium</h3>
+            <p>Productos de alta gama, protocolos de higiene certificados y un trato personalizado.</p>
+          </article>
+
+          <article class="lp-card lp-reveal">
+            <span class="lp-card-ico"><i data-lucide="smartphone"></i></span>
+            <h3>Tarjeta digital</h3>
+            <p>Consulta tus sellos, premios y código de referida desde el teléfono, en cualquier momento.</p>
+          </article>
+
+          <article class="lp-card lp-reveal">
+            <span class="lp-card-ico"><i data-lucide="calendar-check"></i></span>
+            <h3>Agenda inteligente</h3>
+            <p>Te avisamos antes de cada cita y te recordamos cuando estás a un sello de tu premio.</p>
+          </article>
+
+          <article class="lp-card lp-reveal">
+            <span class="lp-card-ico"><i data-lucide="users"></i></span>
+            <h3>Trae a tu amiga</h3>
+            <p>Recomienda AURA y ambas reciben un Spa de Manos Premium sin costo en su primera cita.</p>
+          </article>
+
+          <article class="lp-card lp-reveal">
+            <span class="lp-card-ico"><i data-lucide="cake"></i></span>
+            <h3>Mes de cumpleaños</h3>
+            <p>Regalo sorpresa activo durante todo tu mes. Solo por ser parte de la casa.</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- ===== BENEFICIOS (SPLIT) ===== -->
+      <section id="lp-beneficios" class="lp-split lp-reveal">
+        <div class="lp-split-media">
+          <img src="https://images.unsplash.com/photo-1610992015732-2449b76344bc?auto=format&fit=crop&w=900&q=80"
+               alt="Diseño de uñas" onerror="this.style.display='none'">
+          <div class="lp-badge-float">
+            <i data-lucide="sparkles"></i>
+            <div><b>Premio mayor</b><small>Manicure de autor sin costo</small></div>
+          </div>
+        </div>
+
+        <div class="lp-split-copy">
+          <span class="lp-eyebrow"><i data-lucide="ticket"></i> Programa de lealtad</span>
+          <h2 class="lp-h2">Sellos que sí se convierten en <em>premios reales</em></h2>
+          <p class="lp-sub">
+            Nada de puntos confusos ni letras pequeñas. Acumulas, ves tu progreso en tiempo real
+            y canjeas cuando quieras.
+          </p>
+
+          <ul class="lp-list">
+            <li><i data-lucide="check"></i> 1 sello por cada servicio realizado</li>
+            <li><i data-lucide="check"></i> Beneficio intermedio a mitad de camino</li>
+            <li><i data-lucide="check"></i> Premio mayor al completar los 6 sellos</li>
+            <li><i data-lucide="check"></i> Promociones dirigidas solo para ti</li>
+            <li><i data-lucide="check"></i> Historial y preferencias guardadas por tu artista</li>
+          </ul>
+
+          <button class="lp-btn lp-btn-primary lp-btn-lg" onclick="enterApp('client')">
+            Probar la tarjeta demo <i data-lucide="arrow-right"></i>
+          </button>
+        </div>
+      </section>
+
+      <!-- ===== GALERÍA ===== -->
+      <section id="lp-galeria" class="lp-section">
+        <div class="lp-section-head lp-reveal">
+          <span class="lp-eyebrow"><i data-lucide="camera"></i> Nuestro trabajo</span>
+          <h2 class="lp-h2">Un vistazo al <em>estudio</em></h2>
+        </div>
+
+        <div class="lp-gallery lp-reveal">
+          <figure><img src="https://images.unsplash.com/photo-1632345031435-8727f6897d53?auto=format&fit=crop&w=900&q=80" alt="Nail art" onerror="this.style.display='none'"></figure>
+          <figure><img src="https://images.unsplash.com/photo-1519014816548-bf5fe059798b?auto=format&fit=crop&w=700&q=80" alt="Esmaltes" onerror="this.style.display='none'"></figure>
+          <figure><img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=700&q=80" alt="Estudio" onerror="this.style.display='none'"></figure>
+          <figure><img src="https://images.unsplash.com/photo-1607779097040-26e80aa78e66?auto=format&fit=crop&w=900&q=80" alt="Manicure" onerror="this.style.display='none'"></figure>
+        </div>
+      </section>
+
+      <!-- ===== PASOS ===== -->
+      <section id="lp-pasos" class="lp-section">
+        <div class="lp-section-head lp-reveal">
+          <span class="lp-eyebrow"><i data-lucide="route"></i> Cómo funciona</span>
+          <h2 class="lp-h2">Tu tarjeta lista en <em>tres pasos</em></h2>
+        </div>
+
+        <div class="lp-steps">
+          <div class="lp-step lp-reveal">
+            <span class="lp-step-num">01</span>
+            <h3>Regístrate en recepción</h3>
+            <p>Te damos de alta con tu nombre y WhatsApp. Recibes tu código de lealtad único.</p>
+          </div>
+          <div class="lp-step lp-reveal">
+            <span class="lp-step-num">02</span>
+            <h3>Acumula tus sellos</h3>
+            <p>Cada visita suma automáticamente. Mira tu progreso desde el teléfono cuando quieras.</p>
+          </div>
+          <div class="lp-step lp-reveal">
+            <span class="lp-step-num">03</span>
+            <h3>Canjea tu premio</h3>
+            <p>Al llegar a 6 sellos desbloqueas tu Manicure de Autor con diseño exclusivo, sin costo.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== CTA FINAL ===== -->
+      <section class="lp-final lp-reveal">
+        <div class="lp-final-inner">
+          <h2>¿Lista para empezar a coleccionar?</h2>
+          <p>Entra a la demo y mira exactamente lo que verás en tu tarjeta digital.</p>
+          <div class="lp-cta-row lp-cta-center">
+            <button class="lp-btn lp-btn-light lp-btn-lg" onclick="enterApp('client')">
+              Entrar como clienta <i data-lucide="arrow-right"></i>
+            </button>
+            <button class="lp-btn lp-btn-ghost-light lp-btn-lg" onclick="enterApp('staff')">
+              Soy del personal
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="lp-footer">
+      <div class="lp-footer-inner">
+        <div class="lp-footer-brand">
+          <span class="lp-brand-mark">☪</span>
+          <div>
+            <b>AURA NAILS</b>
+            <small>Estudio & Concierge digital</small>
+          </div>
+        </div>
+        <p class="lp-footer-note">© <span id="lp-year">2025</span> AURA NAILS · Demo de producto</p>
+      </div>
+    </footer>
+
+    <!-- ===== BOTONES FLOTANTES ===== -->
+    <div class="lp-fab-stack">
+      <button class="lp-fab" onclick="lpScrollTop()" aria-label="Volver arriba">
+        <i data-lucide="arrow-up"></i>
+      </button>
+      <a class="lp-fab lp-fab-wa" href="https://wa.me/5215500000000" target="_blank" rel="noopener" aria-label="WhatsApp">
+        <i data-lucide="message-circle"></i>
+      </a>
+    </div>
+
+    <!-- ===== MODAL DE ACCESO (ventana transparente) ===== -->
+    <div id="lp-login-modal" class="lp-modal lp-hide">
+      <div class="lp-modal-backdrop" onclick="closeLoginModal()"></div>
+
+      <div class="lp-modal-card" role="dialog" aria-modal="true">
+        <button class="lp-modal-close" onclick="closeLoginModal()" aria-label="Cerrar">✕</button>
+
+        <span class="lp-eyebrow"><i data-lucide="lock"></i> Acceso seguro</span>
+        <h3 class="lp-modal-title">¿Cómo quieres entrar?</h3>
+        <p class="lp-modal-sub">Elige un perfil para explorar la demo de AURA NAILS.</p>
+
+        <div class="lp-role-list">
+          <button class="lp-role" onclick="enterApp('client')">
+            <span class="lp-role-ico"><i data-lucide="credit-card"></i></span>
+            <span class="lp-role-txt">
+              <b>Soy clienta</b>
+              <small>Consulta tus sellos, premios y tu código de referida.</small>
+            </span>
+            <i data-lucide="chevron-right" class="lp-role-arrow"></i>
+          </button>
+
+          <button class="lp-role" onclick="enterApp('staff')">
+            <span class="lp-role-ico lp-role-ico-alt"><i data-lucide="shield-check"></i></span>
+            <span class="lp-role-txt">
+              <b>Personal / Concierge</b>
+              <small>Directorio, sellos, promociones y personalización de tarjetas.</small>
+            </span>
+            <i data-lucide="chevron-right" class="lp-role-arrow"></i>
+          </button>
+        </div>
+
+        <p class="lp-modal-note">
+          <i data-lucide="info"></i> El acceso del personal requiere PIN de 4 dígitos.
+        </p>
+      </div>
+    </div>
+  </div>
+
+
+    <!-- TOP NAVIGATION HEADER -->
+    <header class="sticky top-0 z-40 px-4 sm:px-6 py-3.5 bg-white/75 backdrop-blur-xl border-b border-[var(--line)]">
+      <div class="max-w-6xl mx-auto flex items-center justify-between">
+        <div class="flex items-center gap-2.5">
+          <span class="text-[var(--gold)] text-lg">☪</span>
+          <h1 class="text-lg sm:text-xl font-bold tracking-widest text-[var(--ink)] uppercase font-serif-title">
+            AURA <span class="text-[var(--gold)] text-[10px] font-sans tracking-[0.25em] font-normal block sm:inline">NAILS</span>
+          </h1>
+        </div>
+        <div class="flex items-center gap-3 text-xs">
+          <span class="text-white/60 hidden md:inline text-[11px]" id="session-status-text">Sesión iniciada: ---</span>
+          <button onclick="switchView('admin')" class="bg-white/10 hover:bg-white/20 text-white px-3 py-1 rounded-full text-[11px] transition border border-white/10">Salir</button>
+        </div>
+      </div>
+    </header>
+
+  <!-- Mode Switcher Floating Bar -->
+  <div class="max-w-5xl mx-auto px-4 mt-4 relative z-40 flex justify-center">
+    <div class="segmented-pill flex text-xs font-bold shadow-lg">
+      <span id="mode-switch-indicator" class="absolute top-1 bottom-1 rounded-full bg-[var(--gold)] transition-all duration-300 ease-out"></span>
+      <button id="btn-mode-client" onclick="switchView('client')" class="relative z-10 px-4 sm:px-5 py-2 flex items-center justify-center gap-1.5 text-xs transition-colors duration-300">
+        <i data-lucide="user-round" class="w-3.5 h-3.5"></i> Soy clienta
+      </button>
+      <button id="btn-mode-admin" onclick="switchView('admin')" class="relative z-10 px-4 sm:px-5 py-2 flex items-center justify-center gap-1.5 text-xs transition-colors duration-300">
+        <i data-lucide="sparkles" class="w-3.5 h-3.5"></i> Personal / Concierge
+      </button>
+    </div>
+  </div>
+
+  <!-- MAIN CONTAINER -->
+  <main class="max-w-6xl mx-auto p-3 sm:p-6 w-full flex-grow space-y-6">
+
+    <!-- ========================================== -->
+    <!-- VISTA CLIENTA: TARJETA DIGITAL -->
+    <!-- ========================================== -->
+    <section id="view-client" class="max-w-2xl mx-auto space-y-5 py-2">
+      <div class="relative aura-glass-card p-5 sm:p-7 rounded-[28px] space-y-4 overflow-hidden">
+        <span class="login-orb login-orb-a" style="width:170px;height:170px;top:-60px;left:-40px;"></span>
+        <span class="login-orb login-orb-b" style="width:150px;height:150px;bottom:-50px;right:-30px;"></span>
+        <div class="relative flex items-center gap-3">
+          <div class="lock-ring w-11 h-11 rounded-full bg-[var(--gold)]/15 border border-[var(--gold)]/30 flex items-center justify-center text-[var(--gold)] flex-shrink-0">
+            <i data-lucide="credit-card" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h3 class="text-base sm:text-lg font-bold font-serif-title text-white leading-tight">Tu Tarjeta de Lealtad</h3>
+            <p class="text-[11px] text-white/45">Ingresa tu teléfono o código para ver tus sellos</p>
+          </div>
+        </div>
+        <div class="relative flex flex-col sm:flex-row gap-2">
+          <div class="relative w-full">
+            <i data-lucide="search" class="w-4 h-4 text-white/30 absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none"></i>
+            <input id="client-search-input" type="text" placeholder="Ej: 5512345678 ó CL-A1B2C3D4" class="w-full text-xs pl-10 pr-4 py-3.5 bg-black/40 border border-white/10 rounded-full outline-none text-white placeholder-white/30">
+          </div>
+          <button id="btn-buscar-tarjeta" onclick="buscarTarjetaClienta()" class="bg-[var(--gold)] text-[#1a0e16] text-xs px-6 py-3.5 rounded-full font-extrabold hover:bg-[var(--gold-light)] transition shadow-sm uppercase tracking-wider whitespace-nowrap flex items-center justify-center gap-1.5">
+            <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i> Ingresar
+          </button>
+        </div>
+        <p class="relative flex items-center gap-1.5 text-[10px] text-white/30">
+          <i data-lucide="shield-check" class="w-3 h-3"></i> Solo tú puedes ver tu propia tarjeta
+        </p>
+      </div>
+
+      <div id="client-card-container" class="hidden space-y-5">
+        <div id="client-card-panel" class="rounded-[28px] p-5 sm:p-7 text-white shadow-2xl relative overflow-hidden transition-all duration-500 bg-plum-gradient border border-[var(--pink-border)] bg-cover bg-center">
+          <div class="absolute inset-0 bg-black/25 pointer-events-none"></div>
+          <span id="badge-cumple" class="hidden relative z-10 text-[9px] font-extrabold text-[#1a0e16] bg-[var(--gold-light)] px-3 py-1 rounded-full mb-3 inline-flex items-center gap-1 shadow">
+            🎂 ¡Mes de Cumpleaños!
+          </span>
+          <div id="banner-promo-activa" class="hidden relative z-10 text-[11px] font-bold text-[#1a0e16] bg-emerald-300 px-3.5 py-2 rounded-2xl mb-3 flex items-center gap-2 shadow">
+            <i data-lucide="megaphone" class="w-3.5 h-3.5 flex-shrink-0"></i> <span id="banner-promo-texto">---</span>
+          </div>
+          <div class="relative z-10 space-y-5">
+            <div class="flex justify-between items-start gap-3">
+              <div>
+                <span class="inline-block text-[9px] text-[var(--gold)] uppercase tracking-[0.2em] font-bold mb-1.5 border border-[var(--gold)]/30 px-2.5 py-0.5 rounded-full bg-black/20" id="card-client-level">---</span>
+                <h3 id="card-client-name" class="text-xl sm:text-3xl font-bold font-serif-title tracking-wide text-white">---</h3>
+                <p class="text-[11px] text-white/60 mt-1">CÓDIGO DE LEALTAD <span id="card-client-code" class="font-mono text-[var(--gold-light)] font-semibold">---</span></p>
+              </div>
+              <div class="text-right">
+                <span class="text-[9px] text-white/50 uppercase tracking-widest block">DESCUENTO FIJO</span>
+                <span class="text-base sm:text-lg font-bold text-[var(--gold-light)] font-serif-title">15% Off</span>
+              </div>
+            </div>
+
+            <div>
+              <p class="text-xs text-white/80 font-serif-title italic">Tu Tarjeta de Sellos</p>
+              <p class="text-[11px] text-white/60 mt-0.5">Completa 6 visitas para obtener un <b class="text-[var(--gold-light)]">Manicure de Autor con diseño exclusivo</b> totalmente libre de costo.</p>
+            </div>
+
+            <div class="grid grid-cols-6 gap-2 sm:gap-3 py-1" id="client-stamps-grid"></div>
+
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center text-[11px] pt-1 border-t border-white/10 gap-1">
+              <span id="progress-text" class="text-white/70">---</span>
+              <a href="#" onclick="return false;" class="text-[var(--gold-light)] underline hover:text-white transition">Ver términos y condiciones</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="aura-glass-card p-5 sm:p-6 rounded-[28px] space-y-4">
+          <div>
+            <h4 class="text-base font-bold font-serif-title text-white">Premios Disponibles</h4>
+            <p class="text-[11px] text-white/50">Disfruta de tus beneficios exclusivos acumulados</p>
+          </div>
+          <div id="client-rewards-list" class="space-y-3 text-xs"></div>
+        </div>
+
+        <div class="aura-glass-card p-5 sm:p-6 rounded-[28px] space-y-4 relative overflow-hidden">
+          <div class="relative z-10 space-y-3">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 bg-[var(--gold)]/25 border border-[var(--gold)]/40 rounded-full flex items-center justify-center text-[var(--gold)] flex-shrink-0">
+                <i data-lucide="gift" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <h4 class="text-base font-bold font-serif-title text-white">Comparte Belleza</h4>
+                <p class="text-[11px] text-white/60 leading-tight">Recomienda AURA a una amiga. Cuando ella agende su primera cita de diseño, <b class="text-[var(--gold-light)]">ambas recibirán un Spa de Manos Premium gratis.</b></p>
+              </div>
+            </div>
+            
+            <div class="flex gap-2">
+              <input id="ref-code-input" readonly value="" class="w-full text-xs p-3 bg-black/40 border border-white/10 rounded-full text-white/80 font-mono">
+              <button onclick="copiarCodigoReferida()" class="bg-white/10 hover:bg-white/20 text-[var(--gold-light)] px-4 sm:px-5 rounded-full font-bold text-xs transition border border-white/10">
+                COPIAR
+              </button>
+            </div>
+            
+            <button onclick="copiarCodigoReferida()" class="w-full bg-[var(--gold)] text-[#1a0e16] py-3 rounded-full font-extrabold text-xs hover:bg-[var(--gold-light)] transition uppercase tracking-wider">
+              ENVIAR INVITACIÓN POR WHATSAPP
+            </button>
+
+            <div class="grid grid-cols-2 gap-4 pt-3 border-t border-white/10 text-center text-xs">
+              <div>
+                <span class="text-[10px] text-white/40 uppercase tracking-wider block">AMIGAS RECOMENDADAS</span>
+                <span class="text-sm font-bold text-white" id="stat-amigas-reg">0 registradas</span>
+              </div>
+              <div>
+                <span class="text-[10px] text-white/40 uppercase tracking-wider block">RECOMPENSAS CANJEADAS</span>
+                <span class="text-sm font-bold text-emerald-400" id="stat-recom-exit">0 exitosas</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- VISTA PERSONAL / ADMINISTRACIÓN (RESPONSIVE MÓVIL/DESKTOP) -->
+    <!-- ========================================== -->
+    <section id="view-admin" class="hidden space-y-5 py-2">
+      <div id="pin-login-card" class="relative max-w-sm mx-auto my-10">
+        <div class="login-orb login-orb-a"></div>
+        <div class="login-orb login-orb-b"></div>
+
+        <div class="relative aura-glass-card p-7 sm:p-9 rounded-[32px] text-center space-y-6 border border-[var(--gold)]/25 shadow-2xl overflow-hidden">
+          <div class="lock-ring w-16 h-16 rounded-full bg-[var(--gold)]/10 border border-[var(--gold)]/30 flex items-center justify-center mx-auto text-[var(--gold)]">
+            <i data-lucide="shield-check" class="w-7 h-7"></i>
+          </div>
+
+          <div class="space-y-1">
+            <span class="text-[10px] text-[var(--gold)] uppercase tracking-[0.25em] font-bold">Acceso Restringido</span>
+            <h3 class="text-2xl font-bold font-serif-title text-white">Panel del Personal</h3>
+            <p class="text-[11px] text-white/45">Ingresa tu PIN de 4 dígitos</p>
+          </div>
+
+          <div>
+            <div id="pin-boxes" class="flex justify-center gap-2.5">
+              <input data-pin-box type="password" inputmode="numeric" pattern="[0-9]*" maxlength="1" autocomplete="off" class="pin-box">
+              <input data-pin-box type="password" inputmode="numeric" pattern="[0-9]*" maxlength="1" autocomplete="off" class="pin-box">
+              <input data-pin-box type="password" inputmode="numeric" pattern="[0-9]*" maxlength="1" autocomplete="off" class="pin-box">
+              <input data-pin-box type="password" inputmode="numeric" pattern="[0-9]*" maxlength="1" autocomplete="off" class="pin-box">
+            </div>
+            <input id="admin-pin-input" type="hidden" value="">
+            <button type="button" id="pin-visibility-toggle" onclick="togglePinVisibility()" class="mt-3 inline-flex items-center gap-1.5 text-[10px] text-white/40 hover:text-[var(--gold-light)] transition">
+              <i data-lucide="eye" class="w-3.5 h-3.5"></i> Mostrar PIN
+            </button>
+            <p id="pin-error-text" class="hidden text-[11px] text-[#e0577a] font-semibold mt-1"></p>
+          </div>
+
+          <div id="pin-keypad" class="grid grid-cols-3 gap-2 max-w-[230px] mx-auto">
+            <button type="button" class="keypad-btn" onclick="pressKeypadDigit('1')">1</button>
+            <button type="button" class="keypad-btn" onclick="pressKeypadDigit('2')">2</button>
+            <button type="button" class="keypad-btn" onclick="pressKeypadDigit('3')">3</button>
+            <button type="button" class="keypad-btn" onclick="pressKeypadDigit('4')">4</button>
+            <button type="button" class="keypad-btn" onclick="pressKeypadDigit('5')">5</button>
+            <button type="button" class="keypad-btn" onclick="pressKeypadDigit('6')">6</button>
+            <button type="button" class="keypad-btn" onclick="pressKeypadDigit('7')">7</button>
+            <button type="button" class="keypad-btn" onclick="pressKeypadDigit('8')">8</button>
+            <button type="button" class="keypad-btn" onclick="pressKeypadDigit('9')">9</button>
+            <button type="button" class="keypad-btn text-white/40" onclick="resetPinBoxes()">
+              <i data-lucide="x" class="w-4 h-4 mx-auto"></i>
+            </button>
+            <button type="button" class="keypad-btn" onclick="pressKeypadDigit('0')">0</button>
+            <button type="button" class="keypad-btn text-white/40" onclick="pressKeypadBackspace()">
+              <i data-lucide="delete" class="w-4 h-4 mx-auto"></i>
+            </button>
+          </div>
+
+          <button onclick="autenticarStaff()" class="w-full bg-[var(--gold)] text-[#1a0e16] font-extrabold py-3.5 rounded-full hover:bg-[var(--gold-light)] transition shadow-lg uppercase tracking-wider text-xs flex items-center justify-center gap-2">
+            <i data-lucide="log-in" class="w-4 h-4"></i> Iniciar sesión
+          </button>
+
+          <p class="flex items-center justify-center gap-1.5 text-[10px] text-white/30">
+            <i data-lucide="lock" class="w-3 h-3"></i> Conexión cifrada · Acceso registrado
+          </p>
+        </div>
+      </div>
+
+      <div id="admin-panel-content" class="hidden grid grid-cols-1 lg:grid-cols-4 gap-5">
+        
+        <!-- SIDEBAR ESCRITORIO (oculto en móvil) -->
+        <aside class="aura-glass-card rounded-[24px] p-5 hidden lg:flex flex-col justify-between space-y-6 lg:col-span-1">
+          <div class="space-y-6">
+            <div class="flex items-center gap-2.5 pb-4 border-b border-white/15">
+              <span class="text-[var(--gold)] text-lg">☪</span>
+              <span class="text-sm font-bold font-serif-title tracking-wider text-white">Aura Concierge</span>
+            </div>
+            
+            <nav class="space-y-1.5 text-xs" id="admin-nav-desktop">
+              <button onclick="switchAdminNav('directorio')" id="nav-btn-directorio" data-nav-icon="user" class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-full bg-[var(--gold)] text-[#1a0e16] font-bold transition-colors duration-200">
+                <i data-lucide="user" class="w-4 h-4"></i> Directorio
+              </button>
+              <button onclick="switchAdminNav('promociones')" id="nav-btn-promociones" data-nav-icon="tag" class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-full text-white/70 hover:bg-white/5 transition-colors duration-200">
+                <i data-lucide="tag" class="w-4 h-4"></i> Promociones
+              </button>
+              <button onclick="switchAdminNav('cumpleanos')" id="nav-btn-cumpleanos" data-nav-icon="cake" class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-full text-white/70 hover:bg-white/5 transition-colors duration-200">
+                <i data-lucide="cake" class="w-4 h-4"></i> Cumpleaños
+              </button>
+              <button onclick="switchAdminNav('referidos')" id="nav-btn-referidos" data-nav-icon="users" class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-full text-white/70 hover:bg-white/5 transition-colors duration-200">
+                <i data-lucide="users" class="w-4 h-4"></i> Referidos Activos
+              </button>
+              <button onclick="switchAdminNav('esmaltes')" id="nav-btn-esmaltes" data-nav-icon="star" class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-full text-white/70 hover:bg-white/5 transition-colors duration-200">
+                <i data-lucide="star" class="w-4 h-4"></i> Esmaltes & Diseños
+              </button>
+              <button onclick="switchAdminNav('personalizacion')" id="nav-btn-personalizacion" data-nav-icon="settings" class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-full text-white/70 hover:bg-white/5 transition-colors duration-200">
+                <i data-lucide="settings" class="w-4 h-4"></i> Personalización
+              </button>
+              <button onclick="switchAdminNav('dashboard')" id="nav-btn-dashboard" class="hidden">Dashboard</button>
+            </nav>
+          </div>
+
+          <div class="pt-4 border-t border-white/10 space-y-3">
+            <div class="flex items-center gap-2">
+              <span class="relative flex h-2 w-2 flex-shrink-0">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-60"></span>
+                <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
+              </span>
+              <span class="text-[10px] text-white/40 uppercase tracking-wider">Profesional en turno</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <div class="w-8 h-8 rounded-full bg-[var(--gold)]/15 border border-[var(--gold)]/30 flex items-center justify-center text-[var(--gold)] text-[10px] font-extrabold flex-shrink-0" id="staff-avatar-desktop">--</div>
+              <div class="min-w-0">
+                <div class="text-xs font-bold text-[var(--gold-light)] font-serif-title truncate" id="staff-name-display-desktop">---</div>
+                <div class="text-[10px] text-white/40 truncate" id="staff-role-display-desktop">---</div>
+              </div>
+            </div>
+            <button onclick="cerrarSesionStaff()" class="w-full text-xs text-rose-400 font-bold bg-rose-500/10 border border-rose-500/20 py-2 rounded-full hover:bg-rose-500/20 transition flex items-center justify-center gap-1.5">
+              <i data-lucide="log-out" class="w-3.5 h-3.5"></i> Cerrar Sesión
+            </button>
+          </div>
+        </aside>
+
+        <!-- SELECTOR RÁPIDO MÓVIL (visible solo en < lg) -->
+        <div class="lg:hidden aura-glass-card rounded-2xl p-3.5 flex flex-col gap-3">
+          <div class="flex items-center justify-between text-xs">
+            <span class="text-[var(--gold)] font-bold flex items-center gap-1.5"><span class="text-sm">☪</span> Aura Concierge</span>
+            <span id="staff-name-display-mobile" class="text-white/60 text-[10px] truncate max-w-[140px]">---</span>
+          </div>
+          <div id="admin-nav-mobile" class="flex gap-1.5 overflow-x-auto pb-1 -mx-1 px-1">
+            <button onclick="switchAdminNav('directorio')" data-nav-id="directorio" class="mobile-nav-tab flex-shrink-0 flex flex-col items-center gap-1 px-3.5 py-2 rounded-2xl bg-[var(--gold)] text-[#1a0e16] font-bold">
+              <i data-lucide="user" class="w-4 h-4"></i><span class="text-[9px] whitespace-nowrap">Directorio</span>
+            </button>
+            <button onclick="switchAdminNav('promociones')" data-nav-id="promociones" class="mobile-nav-tab flex-shrink-0 flex flex-col items-center gap-1 px-3.5 py-2 rounded-2xl text-white/60">
+              <i data-lucide="tag" class="w-4 h-4"></i><span class="text-[9px] whitespace-nowrap">Promos</span>
+            </button>
+            <button onclick="switchAdminNav('cumpleanos')" data-nav-id="cumpleanos" class="mobile-nav-tab flex-shrink-0 flex flex-col items-center gap-1 px-3.5 py-2 rounded-2xl text-white/60">
+              <i data-lucide="cake" class="w-4 h-4"></i><span class="text-[9px] whitespace-nowrap">Cumples</span>
+            </button>
+            <button onclick="switchAdminNav('referidos')" data-nav-id="referidos" class="mobile-nav-tab flex-shrink-0 flex flex-col items-center gap-1 px-3.5 py-2 rounded-2xl text-white/60">
+              <i data-lucide="users" class="w-4 h-4"></i><span class="text-[9px] whitespace-nowrap">Referidos</span>
+            </button>
+            <button onclick="switchAdminNav('esmaltes')" data-nav-id="esmaltes" class="mobile-nav-tab flex-shrink-0 flex flex-col items-center gap-1 px-3.5 py-2 rounded-2xl text-white/60">
+              <i data-lucide="star" class="w-4 h-4"></i><span class="text-[9px] whitespace-nowrap">Diseños</span>
+            </button>
+            <button onclick="switchAdminNav('personalizacion')" data-nav-id="personalizacion" class="mobile-nav-tab flex-shrink-0 flex flex-col items-center gap-1 px-3.5 py-2 rounded-2xl text-white/60">
+              <i data-lucide="settings" class="w-4 h-4"></i><span class="text-[9px] whitespace-nowrap">Ajustes</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- PANEL PRINCIPAL DE GESTIÓN -->
+        <div class="lg:col-span-3 space-y-5">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div>
+              <h2 class="text-xl sm:text-2xl font-bold font-serif-title text-white">Panel de Gestión</h2>
+              <p class="text-xs text-white/50">Control de lealtad y personalización para clientas de Aura.</p>
+            </div>
+            <div class="flex flex-wrap items-center gap-2">
+              <div class="relative flex-grow sm:flex-grow-0">
+                <i data-lucide="search" class="w-3.5 h-3.5 text-white/40 absolute left-3.5 top-3"></i>
+                <input id="admin-search-input" type="text" placeholder="Buscar por nombre o cel..." class="text-xs bg-black/40 border border-white/15 rounded-full pl-9 pr-4 py-2.5 text-white outline-none w-full sm:w-48">
+              </div>
+              <button onclick="buscarClienteAdmin()" class="bg-white/10 hover:bg-white/15 text-white text-xs px-3.5 py-2.5 rounded-full font-bold transition">Buscar</button>
+              <button onclick="abrirModalNuevoCliente()" class="bg-[var(--gold)] text-[#1a0e16] px-4 py-2.5 rounded-full font-extrabold text-xs hover:bg-[var(--gold-light)] transition uppercase tracking-wider shadow whitespace-nowrap">
+                + NUEVA
+              </button>
+            </div>
+          </div>
+
+          <!-- 4 KPI Cards -->
+          <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+            <div class="aura-glass-card p-4 rounded-2xl space-y-1">
+              <span class="text-[9px] sm:text-[10px] text-white/40 font-bold uppercase tracking-wider block">CLIENTAS ACTIVAS</span>
+              <div class="flex items-baseline justify-between">
+                <span id="metric-total-clients" class="text-2xl sm:text-3xl font-bold text-white font-serif-title">0</span>
+                <span class="text-[9px] text-emerald-400 font-bold bg-emerald-500/10 px-1.5 py-0.5 rounded-full">+12%</span>
+              </div>
+            </div>
+            <div class="aura-glass-card p-4 rounded-2xl space-y-1">
+              <span class="text-[9px] sm:text-[10px] text-white/40 font-bold uppercase tracking-wider block">SELLOS (7D)</span>
+              <div class="flex items-baseline justify-between">
+                <span class="text-2xl sm:text-3xl font-bold text-[var(--gold-light)] font-serif-title">0</span>
+                <span class="text-[9px] text-white/40">Prom. 0</span>
+              </div>
+            </div>
+            <div class="aura-glass-card p-4 rounded-2xl space-y-1">
+              <span class="text-[9px] sm:text-[10px] text-white/40 font-bold uppercase tracking-wider block">CANJEADOS</span>
+              <div class="flex items-baseline justify-between">
+                <span id="metric-prizes-given" class="text-2xl sm:text-3xl font-bold text-white font-serif-title">0</span>
+                <span class="text-[9px] text-white/50">92% ok</span>
+              </div>
+            </div>
+            <div class="aura-glass-card p-4 rounded-2xl space-y-1">
+              <span class="text-[9px] sm:text-[10px] text-white/40 font-bold uppercase tracking-wider block">CUMPLEAÑOS</span>
+              <div class="flex items-baseline justify-between">
+                <span id="metric-cumple-count" class="text-2xl sm:text-3xl font-bold text-amber-400 font-serif-title">0</span>
+                <span class="text-[9px] text-amber-300/80 bg-amber-500/10 px-1.5 py-0.5 rounded-full">Alertas</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- SECCIÓN: DIRECTORIO / ATENCIÓN -->
+          <div id="admin-section-directorio" class="grid grid-cols-1 xl:grid-cols-3 gap-5">
+            <div class="xl:col-span-2 aura-glass-card p-5 sm:p-6 rounded-[28px] space-y-4">
+              <div class="flex justify-between items-center flex-wrap gap-2">
+                <div>
+                  <h3 class="text-base font-bold font-serif-title text-white">Directorio de Clientas Frecuentes</h3>
+                  <p class="text-[11px] text-white/40">Visualiza membresía, sellos y preferencia de estilo</p>
+                </div>
+                <button onclick="abrirModalEscanerQR()" class="bg-white/10 text-[var(--gold-light)] px-3 py-1.5 rounded-xl text-xs font-bold hover:bg-white/20 transition flex items-center gap-1.5 border border-white/10">
+                  <i data-lucide="qr-code" class="w-3.5 h-3.5"></i> Escanear QR
+                </button>
+              </div>
+
+              <div id="admin-client-card" class="hidden bg-black/40 p-4 sm:p-5 rounded-2xl border border-[var(--gold)]/30 space-y-4 mb-4">
+                <div class="flex justify-between items-start border-b border-white/10 pb-3">
+                  <div>
+                    <div class="flex items-center gap-2">
+                      <h3 id="adm-c-nombre" class="text-lg font-bold font-serif-title text-white">---</h3>
+                      <span id="adm-c-semaforo" class="text-[10px] font-extrabold px-2.5 py-0.5 rounded-full border">---</span>
+                    </div>
+                    <p class="text-xs text-white/50 font-mono mt-0.5" id="adm-c-codigo-phone">---</p>
+                    <p class="text-[11px] text-white/40 mt-0.5">Última visita: <b id="adm-c-ultvisita" class="text-white/70">---</b></p>
+                  </div>
+                  <div class="text-right bg-[var(--gold)]/10 p-3 rounded-2xl border border-[var(--gold)]/30">
+                    <span class="text-[10px] font-bold text-[var(--gold)] block uppercase">Sellos</span>
+                    <span id="adm-c-visitas" class="text-2xl font-bold text-white font-serif-title">0</span>
+                  </div>
+                </div>
+
+                <div id="adm-c-info-extra" class="hidden flex-wrap gap-2 text-[10px]">
+                  <span id="adm-c-paquete-badge" class="hidden gap-1 bg-[var(--gold)]/15 text-[var(--gold-light)] border border-[var(--gold)]/30 px-2.5 py-1 rounded-full font-bold">
+                    <i data-lucide="package" class="w-3 h-3"></i> <span id="adm-c-paquete-nombre">---</span>
+                  </span>
+                  <span id="adm-c-promo-badge" class="hidden gap-1 bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 px-2.5 py-1 rounded-full font-bold">
+                    <i data-lucide="megaphone" class="w-3 h-3"></i> <span id="adm-c-promo-texto">---</span>
+                  </span>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3">
+                  <button onclick="modificarSelloCliente(1)" class="bg-[var(--gold)] text-[#1a0e16] p-3 rounded-full font-extrabold text-xs flex items-center justify-center gap-2 hover:bg-[var(--gold-light)] transition shadow">
+                    <i data-lucide="plus-circle" class="w-4 h-4"></i> +1 Sello
+                  </button>
+                  <button onclick="modificarSelloCliente(-1)" class="bg-white/10 text-white p-3 rounded-full font-bold text-xs flex items-center justify-center gap-2 hover:bg-white/20 transition border border-white/10">
+                    <i data-lucide="minus-circle" class="w-4 h-4"></i> -1 Sello
+                  </button>
+                </div>
+
+                <div class="bg-emerald-500/10 p-3.5 rounded-2xl border border-emerald-500/20 flex justify-between items-center">
+                  <div>
+                    <p class="text-xs font-bold text-emerald-300">Notificación por WhatsApp</p>
+                    <p class="text-[10px] text-emerald-300/60">Enviar aviso de promociones o premios.</p>
+                  </div>
+                  <button onclick="abrirModalWhatsApp()" class="bg-emerald-600 text-white px-3.5 py-2 rounded-xl text-xs font-bold hover:bg-emerald-500 transition flex items-center gap-1.5 shadow">
+                    <i data-lucide="message-circle" class="w-4 h-4"></i> Contactar
+                  </button>
+                </div>
+
+                <div class="space-y-1.5 pt-1">
+                  <label class="text-[11px] font-bold text-white/70 flex justify-between">
+                    <span>Notas del Servicio / Preferencias:</span>
+                  </label>
+                  <textarea id="adm-c-notas" rows="2" placeholder="Ej: Acrílico Gel Nude Soft #12..." class="w-full p-3 text-xs bg-black/40 border border-white/15 rounded-2xl outline-none text-white"></textarea>
+                  <button onclick="guardarNotasCliente()" class="w-full bg-white/10 text-white text-xs font-bold py-2.5 rounded-full hover:bg-white/20 transition border border-white/10">
+                    Guardar Notas de Clienta
+                  </button>
+                </div>
+              </div>
+
+              <!-- Filtro rápido -->
+              <div class="flex gap-2">
+                <span class="bg-[var(--gold)]/20 text-[var(--gold-light)] px-3 py-1 rounded-full text-[10px] font-bold border border-[var(--gold)]/30">VIP ONYX</span>
+                <span class="bg-white/10 text-white/80 px-3 py-1 rounded-full text-[10px] font-bold">GOLD AURA</span>
+              </div>
+
+              <!-- Tabla de Clientas -->
+              <div class="overflow-x-auto -mx-5 px-5 sm:mx-0 sm:px-0">
+                <table class="w-full text-left text-xs min-w-[500px]">
+                  <thead>
+                    <tr class="border-b border-white/15 text-[10px] text-white/40 uppercase tracking-wider">
+                      <th class="pb-3">CLIENTA</th>
+                      <th class="pb-3">TELÉFONO</th>
+                      <th class="pb-3">MEMBRESÍA</th>
+                      <th class="pb-3">SELLOS</th>
+                      <th class="pb-3">ESTILO</th>
+                      <th class="pb-3 text-right">ACCIÓN</th>
+                    </tr>
+                  </thead>
+                  <tbody id="admin-clients-table-body" class="divide-y divide-white/10 text-white/80">
+                    <tr><td colspan="6" class="py-4 text-center text-white/40">Cargando directorio...</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Registro de Actividad -->
+            <div class="aura-glass-card p-5 sm:p-6 rounded-[28px] space-y-4">
+              <div>
+                <h3 class="text-base font-bold font-serif-title text-white">Registro de Actividad</h3>
+                <p class="text-[11px] text-white/40">Visitas registradas hoy</p>
+              </div>
+              <div id="admin-recent-activity" class="space-y-4 text-xs">
+                <p class="text-white/40">Sin actividad registrada hoy.</p>
+              </div>
+            </div>
+          </div>
+
+                <!-- SECCIÓN: PROMOCIONES AVANZADAS (REEMPLAZO) -->
+                <div id="admin-section-promociones" class="hidden space-y-6">
+                    <div>
+                      <h2 class="text-xl font-bold font-serif-title text-[var(--gold)]">Centro de Promociones Avanzado</h2>
+                      <p class="text-xs text-white/50">Administra los paquetes de lealtad estructurales y el motor de ofertas dirigidas o semanales.</p>
+                        </div>
+            
+                        <!-- Alerta visual si el rol no es Admin -->
+                        <div id="admin-only-warning" class="hidden bg-rose-500/10 border border-rose-500/25 p-4 rounded-2xl text-xs text-rose-300">
+                          ⚠️ Esta sección está configurada en modo de solo lectura para Staff. Las modificaciones en paquetes y promociones requieren privilegios de Administrador.
+                        </div>
+            
+                        <div id="admin-promos-control-panel" class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                          
+                          <!-- BLOQUE DE LA IZQUIERDA: GESTIÓN DE PAQUETES (SÓLO ADMIN) -->
+                          <div class="aura-glass-card p-5 sm:p-6 rounded-[28px] space-y-4 flex flex-col justify-between">
+                            <div class="space-y-3">
+                              <div>
+                                <h3 class="text-base font-bold font-serif-title text-white">📦 Configuración de Paquetes</h3>
+                                <p class="text-[11px] text-white/50">Crea estructuras personalizadas de premios para visitas específicas.</p>
+                              </div>
+                              
+                              <div class="bg-black/40 p-4 rounded-2xl border border-white/10 space-y-3">
+                                <div>
+                                  <label class="text-[11px] font-bold text-white/70 block mb-1">Nombre del Paquete:</label>
+                                  <input id="pkg-nombre" type="text" placeholder="Ej: Paquete Graduaciones o VIP" class="w-full p-2.5 text-xs bg-black/60 border border-white/15 rounded-xl outline-none text-white">
+                                </div>
+                                
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                  <div>
+                                    <label class="text-[11px] font-bold text-white/70 block mb-1">Regla 1 (Intermedia):</label>
+                                    <select id="pkg-v1" class="w-full p-2.5 text-xs bg-black/60 border border-white/15 rounded-xl outline-none font-bold text-[var(--gold-light)]">
+                                      <option value="2">Visita 2</option>
+                                      <option value="3">Visita 3</option>
+                                      <option value="4">Visita 4</option>
+                                      <option value="5">Visita 5</option>
+                                    </select>
+                                  </div>
+                                  <div>
+                                    <label class="text-[11px] font-bold text-white/70 block mb-1">Beneficio Intermedio:</label>
+                                    <input id="pkg-desc1" type="text" placeholder="Ej: 30% Descuento" class="w-full p-2.5 text-xs bg-black/60 border border-white/15 rounded-xl outline-none text-white">
+                                  </div>
+                                </div>
+            
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                  <div>
+                                    <label class="text-[11px] font-bold text-white/70 block mb-1">Regla 2 (Final):</label>
+                                    <select id="pkg-v2" class="w-full p-2.5 text-xs bg-black/60 border border-white/15 rounded-xl outline-none font-bold text-[var(--gold-light)]">
+                                      <option value="6">Visita 6 (Premio Mayor)</option>
+                                    </select>
+                                  </div>
+                                  <div>
+                                    <label class="text-[11px] font-bold text-white/70 block mb-1">Beneficio Premio Mayor:</label>
+                                    <input id="pkg-desc2" type="text" placeholder="Ej: 2x1 o Set Gratis" class="w-full p-2.5 text-xs bg-black/60 border border-white/15 rounded-xl outline-none text-white">
+                                  </div>
+                                </div>
+            
+                                <button id="btn-guardar-pkg" onclick="guardarPaquete()" class="w-full bg-[var(--gold)] text-[#1a0e16] text-xs font-extrabold py-3 rounded-full hover:bg-[var(--gold-light)] transition uppercase tracking-wider mt-2">
+                                  Crear Paquete de Lealtad
+                                </button>
+                              </div>
+                            </div>
+            
+                            <div class="space-y-2 pt-2">
+                              <h4 class="text-xs font-bold text-[var(--gold-light)] uppercase tracking-wider">Paquetes Estructurados Activos:</h4>
+                              <div id="lista-paquetes-admin" class="space-y-2 text-xs max-h-48 overflow-y-auto pr-1">
+                                <!-- Render dinámico desde JavaScript -->
+                              </div>
+                            </div>
+                          </div>
+            
+                          <!-- BLOQUE DE LA DERECHA: PROMOS DINÁMICAS (SEMANALES Y PERSONALIZADAS MULTI-SELECCIÓN) -->
+                          <div class="aura-glass-card p-5 sm:p-6 rounded-[28px] space-y-4 flex flex-col justify-between">
+                            <div class="space-y-3">
+                              <div>
+                                <h3 class="text-base font-bold font-serif-title text-white">🎯 Promociones Dirigidas & Globales</h3>
+                                <p class="text-[11px] text-white/50">Lanza campañas inmediatas por semana o para un conjunto selecto de clientas.</p>
+                              </div>
+            
+                              <div class="bg-black/40 p-4 rounded-2xl border border-white/10 space-y-4">
+                                <div>
+                                  <label class="text-[11px] font-bold text-white/70 block mb-1">Descripción de la Promoción:</label>
+                                  <input id="promo-dinamica-desc" type="text" placeholder="Ej: Retiro Gratis de Acrílico esta semana" class="w-full p-2.5 text-xs bg-black/60 border border-white/15 rounded-xl outline-none text-white">
+                                </div>
+            
+                                <div>
+                                  <label class="text-[11px] font-bold text-white/70 block mb-1">Tipo de Distribución / Alcance:</label>
+                                  <select id="promo-tipo-destino" onchange="toggleSeleccionClientas(this.value)" class="w-full p-2.5 text-xs bg-black/60 border border-white/15 rounded-xl outline-none font-bold text-white">
+                                    <option value="semanal">📅 Promoción Semanal General (Aplica a TODAS)</option>
+                                    <option value="especifica">👤 Promoción Personalizada (Clientas Específicas)</option>
+                                  </select>
+                                </div>
+            
+                                <!-- Lista de Selección Múltiple con Scroll Customizado -->
+                                <div id="contenedor-multi-clientas" class="hidden space-y-1.5 animate-subtle-fast">
+                                  <label class="text-[11px] font-bold text-amber-300 block">
+                                    Selecciona las clientas destino <span class="text-[10px] text-white/40 font-normal">(Mantén presionado Ctrl / Cmd para seleccionar varias)</span>:
+                                  </label>
+                                  <select id="promo-clientas-select" multiple class="w-full p-2 text-xs bg-black/70 border border-[var(--gold)]/30 rounded-xl outline-none text-white h-32 focus:border-[var(--gold)]">
+                                    <!-- Se llena dinámicamente con state.clients -->
+                                  </select>
+                                </div>
+            
+                                <button id="btn-lanzar-promo" onclick="lanzarPromocion()" class="w-full bg-[var(--gold)] text-[#1a0e16] text-xs font-extrabold py-3 rounded-full hover:bg-[var(--gold-light)] transition uppercase tracking-wider">
+                                  Lanzar y Notificar Campaña
+                                </button>
+                              </div>
+                            </div>
+            
+                            <!-- Mantenemos tu lista original por compatibilidad o histórico si tu backend lo requiere -->
+                            <div class="space-y-2 pt-2">
+                              <h4 class="text-xs font-bold text-white/40 uppercase tracking-wider">Historial / Esquema de Premios Base:</h4>
+                              <div id="admin-rewards-list" class="space-y-2 text-xs max-h-24 overflow-y-auto">
+                                <!-- Se mantiene enganchado a tu función cargarRecompensas() -->
+                              </div>
+                            </div>
+                          </div>
+            
+                        </div>
+                      </div>
+            
+
+          <!-- SECCIÓN: CUMPLEAÑOS -->
+          <div id="admin-section-cumpleanos" class="hidden aura-glass-card p-5 sm:p-6 rounded-[28px] space-y-3">
+            <div class="flex justify-between items-center">
+              <h3 class="text-base font-bold font-serif-title text-white">🎂 Cumpleañeras de Este Mes</h3>
+              <span class="text-[10px] bg-amber-500/20 text-amber-300 font-bold px-2.5 py-1 rounded-full border border-amber-500/30" id="birthday-count-badge">0 clientas</span>
+            </div>
+            <div id="birthday-clients-list" class="space-y-2 text-xs"></div>
+          </div>
+
+          <!-- SECCIÓN: REFERIDOS ACTIVOS -->
+          <div id="admin-section-referidos" class="hidden aura-glass-card p-5 sm:p-6 rounded-[28px] space-y-3">
+            <h3 class="text-base font-bold font-serif-title text-white">Programa de Referidos "Trae a tu Amiga"</h3>
+            <div id="referrals-history-list" class="space-y-2 text-xs"></div>
+          </div>
+
+          <!-- SECCIÓN: ESMALTES & DISEÑOS / PERSONALIZACIÓN -->
+          <div id="admin-section-esmaltes" class="hidden aura-glass-card p-5 sm:p-6 rounded-[28px] space-y-4">
+            <div>
+              <h3 class="text-xl font-bold font-serif-title text-white">🎨 Personalizar tarjetas en tiempo real</h3>
+              <p class="text-xs text-white/50 mt-1">El cambio se aplica en todos los dispositivos de las clientas.</p>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="estilo-options-grid"></div>
+            <div class="bg-black/40 border border-white/15 rounded-2xl p-4 space-y-2">
+              <label class="text-xs font-bold text-white flex items-center gap-1.5">URL de Imagen de Fondo (para estilo Foto):</label>
+              <input id="input-estilo-imagen-url" type="url" placeholder="https://ejemplo.com/fondo.jpg" oninput="actualizarUrlPreview(this.value)" class="w-full p-2.5 text-xs bg-black/60 border border-white/15 rounded-xl text-white outline-none">
+            </div>
+            <div class="bg-black/50 rounded-[24px] p-4 space-y-3 border border-white/10">
+              <div class="flex justify-between items-center">
+                <span id="estilo-preview-badge" class="text-[10px] font-bold bg-[var(--gold)]/20 text-[var(--gold-light)] px-2.5 py-1 rounded-full">---</span>
+              </div>
+              <div id="estilo-preview-card" class="rounded-[24px] p-5 text-white space-y-4">
+                <div class="flex justify-between items-start">
+                  <div>
+                    <h3 class="text-lg font-bold font-serif-title">Vista previa</h3>
+                    <p class="text-[11px] text-white/60">#AURA-VIP</p>
+                  </div>
+                  <span id="estilo-preview-emoji" class="text-xl">✨</span>
+                </div>
+                <div class="grid grid-cols-6 gap-1.5" id="estilo-preview-stamps"></div>
+              </div>
+              <div class="flex gap-2 pt-1">
+                <button onclick="aplicarEstiloTarjeta()" class="flex-1 bg-[var(--gold)] text-[#1a0e16] text-xs font-extrabold py-3 rounded-full hover:bg-[var(--gold-light)] transition uppercase">✓ Aplicar este diseño</button>
+                <button onclick="cancelarPreviewEstilo()" class="px-5 bg-white/10 text-white text-xs font-bold py-3 rounded-full hover:bg-white/20 transition">Cancelar</button>
+              </div>
+            </div>
+          </div>
+
+          <div id="admin-section-personalizacion" class="hidden"></div>
+          <div id="admin-section-dashboard" class="hidden"></div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- MODALES Y NOTIFICACIONES (REEMPLAZO) -->
+  <div id="modal-nuevo-cliente" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+    <div class="aura-glass-card max-w-sm w-full rounded-[28px] p-6 border border-[var(--gold)]/30 shadow-2xl space-y-4">
+      <div class="flex justify-between items-center">
+        <h3 class="text-lg font-bold font-serif-title text-white">Registrar Clienta AURA</h3>
+        <button onclick="cerrarModal('modal-nuevo-cliente')" class="text-white/50 hover:text-white text-lg">✕</button>
+      </div>
+      
+      <div class="space-y-3 text-xs">
+        <div>
+          <label class="font-bold text-white/80 block mb-1">Nombre Completo:*</label>
+          <input id="nc-nombre" type="text" placeholder="Ej. Sofía Valenzuela" class="w-full p-2.5 bg-black/40 border border-white/15 rounded-xl outline-none text-white">
+        </div>
+        
+        <div>
+          <label class="font-bold text-white/80 block mb-1">Teléfono (WhatsApp):*</label>
+          <input id="nc-telefono" type="tel" placeholder="Ej. 5491158229311" class="w-full p-2.5 bg-black/40 border border-white/15 rounded-xl outline-none text-white">
+        </div>
+        
+        <div>
+          <label class="font-bold text-white/80 block mb-1">Fecha de Cumpleaños:</label>
+          <input id="nc-cumple" type="date" class="w-full p-2.5 bg-black/40 border border-white/15 rounded-xl outline-none text-white color-scheme-dark">
+        </div>
+        
+        <div>
+          <label class="font-bold text-white/80 block mb-1">¿Fue referida por otra clienta?</label>
+          <select id="nc-referente" class="w-full p-2.5 bg-black/60 border border-white/15 rounded-xl outline-none text-white">
+            <option value="">-- No --</option>
+            <!-- Se llena dinámicamente desde JavaScript -->
+          </select>
+        </div>
+
+        <div>
+          <label class="font-bold text-amber-300 block mb-1">Asignar Paquete de Lealtad (Opcional):</label>
+          <select id="nc-paquete-asignado" class="w-full p-2.5 bg-black/60 border border-[var(--gold)]/20 rounded-xl outline-none text-white focus:border-[var(--gold)]">
+            <option value="">-- Ninguno (Esquema estándar de 6 sellos) --</option>
+            <!-- Se llena dinámicamente desde state.paquetes -->    
+          </select>
+          <p class="text-[10px] text-white/40 mt-1">Heredará de forma automática las reglas de visitas y promociones configuradas por el Administrador.</p>
+        </div>
+      </div>
+
+      <button onclick="guardarNuevoCliente()" class="w-full bg-[var(--gold)] text-[#1a0e16] py-3 rounded-full font-extrabold text-xs hover:bg-[var(--gold-light)] transition uppercase tracking-wider mt-2">
+        Guardar Tarjeta VIP
+      </button>
+    </div>
+  </div>
+  
+
+  <div id="modal-escaner-qr" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+    <div class="aura-glass-card max-w-sm w-full rounded-[28px] p-6 border border-[var(--gold)]/30 shadow-2xl space-y-4 text-center">
+      <div class="flex justify-between items-center">
+        <h3 class="text-base font-bold font-serif-title text-white">Escanear QR AURA</h3>
+        <button onclick="cerrarModalEscaner()" class="text-white/50 hover:text-white text-lg">✕</button>
+      </div>
+      <div id="qr-reader-container" class="w-full overflow-hidden rounded-2xl border border-white/15 min-h-[200px] bg-black/50 flex items-center justify-center"></div>
+      <p class="text-[11px] text-white/50">Apunta la cámara al código QR de la clienta.</p>
+    </div>
+  </div>
+
+  <div id="modal-whatsapp" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+    <div class="aura-glass-card max-w-sm w-full rounded-[28px] p-6 border border-[var(--gold)]/30 shadow-2xl space-y-4">
+      <div class="flex justify-between items-center">
+        <h3 class="text-base font-bold font-serif-title text-white flex items-center gap-1.5">
+          <i data-lucide="message-circle" class="w-4 h-4 text-emerald-400"></i> Enviar WhatsApp
+        </h3>
+        <button onclick="cerrarModal('modal-whatsapp')" class="text-white/50 hover:text-white text-lg">✕</button>
+      </div>
+      <div class="space-y-2.5 text-xs">
+        <p class="text-white/60">Selecciona plantilla para <b id="wa-client-name" class="text-[var(--gold-light)]">---</b>:</p>
+        <button onclick="enviarWA('premio')" class="w-full p-3 bg-emerald-500/10 rounded-2xl border border-emerald-500/20 text-left hover:bg-emerald-500/20 transition">
+          <p class="font-bold text-emerald-300">✨ Próxima a Premio / Canje</p>
+        </button>
+        <button onclick="enviarWA('reenganche')" class="w-full p-3 bg-amber-500/10 rounded-2xl border border-amber-500/20 text-left hover:bg-amber-500/20 transition">
+          <p class="font-bold text-amber-300">💛 Extrañamos tu visita en AURA</p>
+        </button>
+        <button onclick="enviarWA('cumple')" class="w-full p-3 bg-purple-500/10 rounded-2xl border border-purple-500/20 text-left hover:bg-purple-500/20 transition">
+          <p class="font-bold text-purple-300">🎂 Felicitación de Cumpleaños</p>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast-container" class="fixed bottom-4 right-4 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+     <!-- Botón flotante: volver a la demo pública desde la app -->
+  <button id="lp-back-home" class="hidden" onclick="backToLanding()" title="Volver al inicio">
+    <i data-lucide="home"></i>
+    <span>Inicio</span>
+  </button>
+
+  <footer class="text-center text-[11px] text-white/30 py-6 border-t border-white/10 mt-12">
+    AURA NAILS & CONCIERGE • Tu tarjeta de lealtad de lujo
+  </footer>
+
+</body>
+</html>
